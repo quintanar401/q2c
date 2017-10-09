@@ -25,7 +25,7 @@
 * [Memory allocation](#memory-allocation)
 * [Exceptions](#exceptions)
 * [API](#api)
-* [.b2c.compile](b2ccompile)
+* [.b2c.compile](b2ccompile---main-function)
 * [.b2c.defExtFn - declare an external function](#b2cdefextfn---declare-an-external-function)
 * [.b2c.defExtVar - declare an external variable](#b2cdefextvar---declare-an-external-variable)
 * [.b2c.defExtType - define an external type](#b2cdefexttype---define-an-external-type)
@@ -416,7 +416,7 @@ You can raise an exception in all functions as usual but if a function doesn't h
 
 # API
 
-### .b2c.compile
+### .b2c.compile - main function
 
 ```
 .b2c.compile[`fn1`.ns.fn2;`libname`rec`goal!(`myLib;1b;`compile)]
