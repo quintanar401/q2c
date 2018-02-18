@@ -82,11 +82,11 @@
 / type: `typename, (`p;type), (`s;`name;`n1..`nk!(type1;..;typek)), (`a;length;type), (`l;type1,..,typek), (`Kx;const),
 /    (`f;res type;a1 type;..;an type) - `l for index, `l (list) and `Kx - for internal use only
 / assign result types to each code where `a => (`rtype;fn/obj type;arg/idx types), `s => (indexed variable type;var type;is it pure;index type;func/val type)
-.q2b.types:([] name:`c.j`c.long_long`c.i`c.int`c.uint`c.f`c.double`c.void`c.cvoid`c.bool`c.schar`c.g`c.uchar`c.char`c.c`c.S`c.h`c.short`c.ushort`c.long;
-  cname:((),"J";"long long";(),"I";"int";"unsigned int";(),"F";"double";"void";"const void";"_Bool";"signed char";(),"G";"unsigned char";"char";"char";"char*";(),"H";"short";"unsigned short";"long");
-  def:(`c.long_long;();`c.int;();();`c.double;();();();();();`c.uchar;();();`c.char;`p`c.c;`c.short;();();()); ex:1b);
-`.q2b.types upsert {(`$"c.",upper -1#string x`name;x[`cname],"*";(`p;x`name);1b)}each select from .q2b.types where name in `c.i`c.j`c.f`c.g`c.c`c.h;
-`.q2b.types upsert {(`$string[x`name],"_p";x[`cname],"*";(`p;x`name);1b)}each select from .q2b.types where name in `c.long_long`c.int`c.uint`c.double`c.void`c.uchar`c.I`c.J`c.F`c.G`c.C`c.H`c.S`c.short`c.ushort`c.long`c.cvoid;
+.q2b.types:([] name:`c.j`c.long_long`c.i`c.int`c.uint`c.f`c.double`c.e`c.void`c.cvoid`c.bool`c.schar`c.g`c.uchar`c.char`c.c`c.S`c.h`c.short`c.ushort`c.long`c.cchar;
+  cname:((),"J";"long long";(),"I";"int";"unsigned int";(),"F";"double";"E";"void";"const void";"_Bool";"signed char";(),"G";"unsigned char";"char";"char";"char*";(),"H";"short";"unsigned short";"long";"const char");
+  def:(`c.long_long;();`c.int;();();`c.double;();();();();();();`c.uchar;();();`c.char;`p`c.c;`c.short;();();();()); ex:1b);
+`.q2b.types upsert {(`$"c.",upper -1#string x`name;x[`cname],"*";(`p;x`name);1b)}each select from .q2b.types where name in `c.i`c.j`c.f`c.e`c.g`c.c`c.h;
+`.q2b.types upsert {(`$string[x`name],"_p";x[`cname],"*";(`p;x`name);1b)}each select from .q2b.types where name in `c.long_long`c.int`c.uint`c.double`c.void`c.uchar`c.I`c.J`c.F`c.E`c.G`c.C`c.H`c.S`c.short`c.ushort`c.long`c.cvoid`c.cchar;
 .q2b.ktypes:`K`Ki`KI`Kj`KJ`Kf`Ks`KC`Kvoid; / general K obj and some K consts, Kvoid = ::
 .q2b.constTypes:.q2b.ktypes except `K; / (Kx;const) types
 .q2b.t2kt:(0 -6 6 -7 7 -9 -11 10h)!-1_.q2b.ktypes;
@@ -110,7 +110,7 @@
 .q2b.indexT:{[is0;t;i] $[0=count i;t;is0&.q2b.pureK[t]&all .q2b.pureK each i;`K;(`s=f:first t:.q2b.unwindT t)&(fi:first i 0)in`Ks`KC;$[(ix:$[fi=`Ks;::;`$]i[0;1])in key t 2;.z.s[0;t[2]ix;1_i];::];`f=f;.q2b.indexTF[t;i];
   {$[x=`p;`f=first .q2b.unwindT y 1;0b]}[f;t];.q2b.indexT[is0;t 1;i];(f in`p`a)&.q2b.matchT[`c.j;fi]|.q2b.matchT[`c.i;fi]|fi in`Ki`Kj;.z.s[0;last t;1_i];(`s=first t:.q2b.unwindT last t)&(`p=f)&fi in`Ks`KC;.z.s[is0;t;i];::]}; / calc type of an index strct[`field] arr[idx] p[idx]
 .q2b.indexF:{[ft;isC;a] if[not(::)~v:.q2b.indexT[1;ft;a]; if[isC&`f=first ft; if[not count[ft]=2+count a;'"C-function: wrong num args"]]]; v}; /  for C-level pure K funcs
-.q2b.unwindT:{[t] $[-11=type t;$[t in .q2b.baseTypes;t;null i:exec first i from .q2b.types where name=t;'"unknown type: ",string t;.q2b.unwindT .q2b.types[i;`def]];t]}; / resolve name->def
+.q2b.unwindT:{[t] $[-11=type t;$[t in .q2b.baseTypes;t;null i:exec first i from .q2b.types where name=t;'"unknown type: ",string t;$[()~v:.q2b.types[i;`def];t;.q2b.unwindT v]];t]}; / resolve name->def
 .q2b.matchT0:{[t1;t2;f] if[t1~t2;:1b]; t1:.q2b.unwindT t1; t2:.q2b.unwindT t2; $[t1~t2;1b;(t1~`c.void)&t2~`Kvoid;1b;(`p=f1:first t1)&`p=f2:first t2;f[t1 1;t2 1];(`a=f1)&`a=f2;f[t1 2;t2 2];(`s=f1)&(`s=f2);t1[1]~t2 1;0b]};
 .q2b.matchT:{[t1;t2] if[.q2b.pureK[t1]&.q2b.pureK t2;:1b]; .q2b.matchT0[t1;t2;.z.s]}; / treat all K types as the same type
 .q2b.matchTEx:{[t1;t2] if[.q2b.pureK[t1]&.q2b.pureK t2; :$[all t:(f1:first t1;f2:first t2)in .q2b.constTypes;f1=f2;not t 1]]; .q2b.matchT0[t1;t2;.z.s]}; / K and Kx are different
@@ -175,12 +175,3 @@
 .q2b.chkFnTy:{[f] if[any `f=first each .q2b.unwindT each(f[8]key[f 8]except f 3),f[5][`cty][;1]except``K`.s`.skip; '"cvars/exps with the function type are not allowed, use a pointer"]; f};
 .q2b.calcOpStatus:{[o;f] cc:f 5; cc[`st]:prev .q2b.calcStk[cc]\[();tc:til count cc]; cc[`inl]:.q2b.calcSt1[cc]/[(count cc)#0N;reverse tc]; .q2b.chkFnTy .q2b.calcCVTy[f;.q2b.calcVal .q2b.removeDV cc]};
 .q2b.optMap[`calcTypes`simplifyCExpr`calcOpStatus]:(.q2b.calcTypes;.q2b.simplifyCExpr;.q2b.calcOpStatus);
-
-/ .q2b.topts:enlist[`opts]!enlist `applyOpt`idCallOpt`emptyBlockOpt`calcTypes`simplifyCExpr`foldConsts`singleConstOpt`optConsts`calcOpStatus;
-\
-.q2b.fmap:()!(); .q2b.processFn[.q2b.topts;{`c.i$`c.j$x+1}] 5
-.q2b.fmap:()!(); .q2b.processFn[.q2b.topts;{(`c.i$x)+`c.i$10}] 5
-.q2b.fmap:()!(); .q2b.processFn[.q2b.topts;{c.j.a:`c.j$10; c.a+c.a; 1}] 5
-.q2b.fmap:()!(); .q2b.processFn[.q2b.topts;{c.k.a:`c.k$x; c.i.c:`c.i$10i; c.c: (*)(&)c.c; c.c:(`c.i$1i)+`c.i$x; C.printf `c.str$"msg"; "i"$where first 10*x; c.i.b:c.a`n; 1}] 5
-.q2b.fmap:()!(); .q2b.processFn[.q2b.topts;{if[10;1]; f[1;do[1;x+20+30;do[10;x+10];c.do1]]}] 5
-.q2b.fmap:()!(); .q2b.processFn[.q2b.topts;{ 1+c.s1.v[`pk;(`c.i$10i)+`c.i$10i]:1; 1}] 5

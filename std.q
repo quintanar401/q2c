@@ -23,11 +23,13 @@ if[.b2c.is32; {x set value ssr[string get x;"`j";"`i"]}each `.b2c.kvalue`.b2c.kw
 .b2c.K2j_cast:{"c)`K`c.J`K"; if[0i>(`c.k$y)`t; if[8i=.b2c.intmap neg `c.i$(`c.k$y)`t; x[0]:(`c.unsafe_k$y)`j; :()]]; '"K2j_cast: type"};
 .b2c.K2f_cast:{"c)`K`c.F`K"; if[-9i=(`c.k$y)`t; x[0]:(`c.unsafe_k$y)`f; :()]; '"K2f_cast: type"};
 .b2c.K2h_cast:{"c)`K`c.H`K"; if[-5i=(`c.k$y)`t; x[0]:(`c.unsafe_k$y)`h; :()]; '"K2h_cast: type"};
+.b2c.K2c_cast:{"c)`K`c.C`K"; if[-10i=(`c.k$y)`t; x[0]:`c.c$(`c.unsafe_k$y)`g; :()]; '"K2c_cast: type"};
 / .b2c.K2u_cast:{"c)`K`c.U`K"; if[-2i=(`c.k$y)`t; x[0]:`c.U$(`c.unsafe_k$y)`G0; :()]; '"K2u_cast: type"};
 .b2c.K2K_cast:{"c)`K`c.K_p`K"; if[0i<>(`c.k$y)`t;'"K2K_cast: type"]; if[0i=(`c.k$y)`r; '"K2K_cast: no ref"]; x[0]:`c.K$(`c.unsafe_k$y)`G0;};
 .b2c.K2I_cast:{"c)`K`c.I_p`K"; c.k.y:(`c.k$y); if[(20>c.y`t)&0i<c.y`t; if[4i=.b2c.intmap `c.i$c.y`t; if[0i=c.y`r; '"K2I_cast: no ref"]; x[0]:`c.I$(`c.unsafe_k$y)`G0; :()]]; '"K2I_cast: type"};
 .b2c.K2J_cast:{"c)`K`c.J_p`K"; c.k.y:(`c.k$y); if[(20>c.y`t)&0i<c.y`t; if[8i=.b2c.intmap `c.i$c.y`t; if[0i=c.y`r; '"K2J_cast: no ref"]; x[0]:`c.J$(`c.unsafe_k$y)`G0; :()]]; '"K2J_cast: type"};
 .b2c.K2F_cast:{"c)`K`c.F_p`K"; if[9i=(`c.k$y)`t; if[0i=(`c.k$y)`r; '"K2F_cast: no ref"]; x[0]:`c.F$(`c.unsafe_k$y)`G0; :()]; '"K2F_cast: type"};
+.b2c.K2E_cast:{"c)`K`c.E_p`K"; if[8i=(`c.k$y)`t; if[0i=(`c.k$y)`r; '"K2E_cast: no ref"]; x[0]:`c.E$(`c.unsafe_k$y)`G0; :()]; '"K2E_cast: type"};
 .b2c.K2H_cast:{"c)`K`c.H_p`K"; if[5i=(`c.k$y)`t; if[0i=(`c.k$y)`r; '"K2H_cast: no ref"]; x[0]:`c.H$(`c.unsafe_k$y)`G0; :()]; '"K2H_cast: type"};
 .b2c.K2S_cast:{"c)`K`c.S_p`K"; if[(-11i=(`c.k$y)`t)|10i=(`c.k$y)`t; if[0i=(`c.k$y)`r; '"K2S_cast: no ref"]; if[-11i=(`c.k$y)`t; x[0]:(`c.unsafe_k$y)`s; :()];
   if[any 0=y; x[0]:`c.S$(`c.unsafe_k$y)`G0;:()]; '"K2S_cast: no null terminator"]; '"K2S_cast: type"};
@@ -35,7 +37,7 @@ if[.b2c.is32; {x set value ssr[string get x;"`j";"`i"]}each `.b2c.kvalue`.b2c.kw
 .b2c.k2K_cast:{"c)`K`c.K_p`c.k"; if[0i<>y`t;'"k2K_cast: type"]; if[0i=y`r; '"k2K_cast: no ref"]; x[0]:`c.K$(`c.unsafe_k$y)`G0;};
 
 / K types
-`.q2b.types upsert ((`c.k;(),"K";(`p;(`s;"k0";`n`t`r!`c.j`c.schar`c.i;1b));1b);(`c.K;"K*";`p`c.k;1b);(`c.K_p;"K**";`p`c.K;1b);(`c.unsafe_k;(),"K";(`p;(`s;`k0;`n`t`i`j`f`h`s`r`G0!`c.j`c.schar`c.i`c.j`c.f`c.h`c.S`c.i`c.G;1b));1b);
+`.q2b.types upsert ((`c.k;(),"K";(`p;(`s;"k0";`n`t`r!`c.j`c.schar`c.i;1b));1b);(`c.K;"K*";`p`c.k;1b);(`c.K_p;"K**";`p`c.K;1b);(`c.unsafe_k;(),"K";(`p;(`s;`k0;`n`t`i`j`f`h`g`s`r`G0!`c.j`c.schar`c.i`c.j`c.f`c.h`c.g`c.S`c.i`c.G;1b));1b);
   (`c.u;(),"U";(`s;`U;enlist[`g]!enlist(`a;16;`c.g);1b);1b);(`c.U;"U*";`p`c.u;1b));
 .b2c.defExtType:{[t;def] cn:$[t like "c.*";2_string t;'"ctype is not c.*"]; `.q2b.types upsert ((t;cn;def;1b);(`$string[t],"_p";cn,"*";(`p;t);1b)); .b2c.defPCast t; if[0=count def; .q2b.baseTypes,:t]};
 .b2c.defStruct0:{[isEx;isSt;n;d;to;fr] ns:string n; $[n like "c.*";[sn:n;cn:2_ns];[if[not isEx;'"internal structs must look like c.name"]; sn:`$"c.s_",ns;cn:$[isSt;"struct ";"union "],ns]];
@@ -52,6 +54,8 @@ if[.b2c.is32; {x set value ssr[string get x;"`j";"`i"]}each `.b2c.kvalue`.b2c.kw
 .b2c.defExtUnion:{[n;d;to;fr].b2c.defStruct0[1b;0b;n;d;to;fr]};
 .b2c.defType:{[t;def] if[not t like "c.*";'"ctype is not c.*"]; if[0=count def;'"no type def"]; `.q2b.types upsert ((t;();.q2b.crtType def;0b);(`$string[t],"_p";();(`p;t);0b)); .b2c.defPCast t};
 
+.b2c.enStruct:{$[98=t:type x;raze .z.s each x;99=t;raze .z.s each value x;t<0;0x0 vs x;t<20;raze .z.s each x;'"type"]};
+
 / casts
 .b2c.defCCast:{[x] if[not 2=count x;'"length"]; if[not 11=type x;'"type"]; .q2b.chkTy each x; if[any .q2b.pureK each x;'"K cast"]; `.q2b.castMap upsert (x 0;x 1;1b;::;::)};
 .b2c.defPCast:{[x] if[not -11=type x;'"type"]; .q2b.chkTy x; if[.q2b.pureK x;'"K cast"]; if[not (p:`$string[x],"_p")in .q2b.types`name; `.q2b.types upsert (p;();(`p;x);0b)];
@@ -63,18 +67,19 @@ if[.b2c.is32; {x set value ssr[string get x;"`j";"`i"]}each `.b2c.kvalue`.b2c.kw
   (`Kj;`c.f;1b;.b2c.cnstF["f";0wf;"(double)";""];::);(`Kf;`c.f;1b;.q2b.cnstCast`c.f;::);(`KC;`c.S;1b;{"\"",ssr/[x;("\\";"\n";"\r");("\\\\";"\\n";"\\r")],"\""};::);
   (`c.j;`c.J;1b;::;{"&",y});(`c.i;`c.I;1b;::;{"&",y});
   / K/c.k
-  (`K;`c.j;0b;::;`.b2c.K2j_cast);(`K;`c.i;0b;::;`.b2c.K2i_cast);(`K;`c.f;0b;::;`.b2c.K2f_cast);(`K;`c.K;0b;::;`.b2c.K2K_cast);(`K;`c.I;0b;::;`.b2c.K2I_cast);(`K;`c.J;0b;::;`.b2c.K2J_cast);(`K;`c.F;0b;::;`.b2c.K2F_cast);
-  (`K;`c.S;0b;::;`.b2c.K2S_cast);(`K;`c.C;0b;::;`.b2c.K2C_cast);(`K;`c.H;0b;::;`.b2c.K2H_cast);(`K;`c.string;0b;::;`.b2c.K2S_cast);(`K;`c.h;0b;::;`.b2c.K2h_cast);(`c.k;`c.K;0b;::;`.b2c.k2K_cast);
+  (`K;`c.j;0b;::;`.b2c.K2j_cast);(`K;`c.i;0b;::;`.b2c.K2i_cast);(`K;`c.f;0b;::;`.b2c.K2f_cast);(`K;`c.K;0b;::;`.b2c.K2K_cast);(`K;`c.I;0b;::;`.b2c.K2I_cast);(`K;`c.J;0b;::;`.b2c.K2J_cast);(`K;`c.F;0b;::;`.b2c.K2F_cast);(`K;`c.E;0b;::;`.b2c.K2E_cast);
+  (`K;`c.S;0b;::;`.b2c.K2S_cast);(`K;`c.C;0b;::;`.b2c.K2C_cast);(`K;`c.H;0b;::;`.b2c.K2H_cast);(`K;`c.string;0b;::;`.b2c.K2S_cast);(`K;`c.h;0b;::;`.b2c.K2h_cast);(`c.k;`c.K;0b;::;`.b2c.k2K_cast);(`K;`c.c;0b;::;`.b2c.K2c_cast);
   (`K;`c.k;1b;::;::);(`K;`c.unsafe_k;1b;::;::);(`c.k;`c.unsafe_k;1b;::;{y});(`c.k;`c.void_p;1b;::;::);(`c.G;`c.K;1b;::;::));
 / ctype vs ctype
 .b2c.defExtType[;()]each `c.mode_t`c.size_t`c.pid_t`c.off_t`c.ssize_t`c.uid_t`c.gid_t;
 .b2c.defExtType[`c.string;`c.S];
 .b2c.defType[`c.ij;.b2c.it];
-.b2c.defCCast each (`c.schar`c.i;`c.G`c.F;`c.G`c.J;`c.G`c.I;`c.G`c.H;`c.G`c.S;`c.G`c.C;`c.G`c.void_p;`c.H`c.ushort_p;`c.C`c.void_p;`c.void_p`c.C;`c.void_p`c.I;`c.I`c.void_p;`c.void_p`c.J;`c.J`c.void_p;`c.cvoid_p`c.void_p);
-.b2c.defPCast each`c.void`c.void_p`c.I`c.J`c.H`c.G`c.F`c.K`c.S`c.C`c.ushort; / casts long vs a pointer
-.b2c.defCCast each {(.b2c.it,/:x),x,\:.b2c.it}`c.I`c.J`c.H`c.G`c.F`c.K`c.S`c.C`c.off_t`c.size_t`c.ssize_t; / casts long vs type
+.b2c.defCCast each (`c.schar`c.i;`c.G`c.F;`c.G`c.E;`c.G`c.J;`c.G`c.I;`c.G`c.H;`c.G`c.S;`c.G`c.C;`c.G`c.void_p;`c.H`c.ushort_p;`c.C`c.void_p;`c.void_p`c.C;`c.void_p`c.F;`c.F`c.void_p;`c.void_p`c.I;`c.I`c.void_p;
+  `c.void_p`c.J;`c.J`c.void_p;`c.cvoid_p`c.void_p;`c.void_p`c.E;`c.E`c.void_p;`c.c`c.uchar;`c.C`c.uchar_p;`c.cchar_p`c.S;`c.g`c.c);
+.b2c.defPCast each`c.void`c.void_p`c.I`c.J`c.H`c.G`c.F`c.E`c.K`c.S`c.C`c.ushort`c.cchar; / casts long vs a pointer
+.b2c.defCCast each {(.b2c.it,/:x),x,\:.b2c.it}`c.I`c.J`c.H`c.G`c.F`c.E`c.K`c.S`c.C`c.off_t`c.size_t`c.ssize_t; / casts long vs type
 .b2c.defCCast each {(`c.j,/:x),x,\:`c.j}`c.char`c.bool`c.ij;
-.b2c.defCCast each {(`c.ij,/:x),x,\:`c.ij}`c.I`c.J`c.H`c.G`c.F`c.K`c.S`c.C`c.off_t`c.size_t`c.ssize_t;
+.b2c.defCCast each {(`c.ij,/:x),x,\:`c.ij}`c.I`c.J`c.H`c.G`c.F`c.E`c.K`c.S`c.C`c.off_t`c.size_t`c.ssize_t;
 .b2c.defCCast each {(`c.i,/:x),x,\:`c.i}`c.mode_t`c.pid_t`c.j`c.uint`c.char`c.ushort`c.short`c.long`c.uid_t`c.gid_t`c.bool`c.ij; / int vs type
 .b2c.defCompCast each (`K`c.i`c.uint;`K`c.i`c.mode_t;`K,.b2c.it,`c.size_t;`K`c.i`c.pid_t;`K`c.i`c.long;`K,.b2c.it,`c.off_t;`K,.b2c.it,`c.ssize_t;`K`c.i`c.uid_t;`K`c.i`c.gid_t;`K,.b2c.it,`c.ij); / shortcuts
 
@@ -113,6 +118,7 @@ if[.b2c.is32; {x set value ssr[string get x;"`j";"`i"]}each `.b2c.kvalue`.b2c.kw
 .b2c.defExtFn0[`C.toK;"";`f`K`c.uint;{[cc;i;n;a] "ki((int)",a[0],")"}];
 .b2c.defExtFn0[`C.toK;"";`f`K`c.h;{[cc;i;n;a] "kh((int)",a[0],")"}];
 .b2c.defExtFn0[`C.toK;"";`f`K`c.bool;{[cc;i;n;a] "kb((int)",a[0],")"}];
+.b2c.defExtFn0[`C.toK;"";`f`K`c.c;{[cc;i;n;a] "kc((int)",a[0],")"}];
 .b2c.toKS:{"c)`K`c.S"; c.j.l:0; while[0<>`c.i$x c.l;c.l+:1]; r:(C.toK c.l)#" "; c.S.r:`c.S$(`c.unsafe_k$r)`G0; do[c.l;c.r[c.do1]:x c.do1]; r}; / char* -> K string
 .b2c.toKC:{"c)`K`c.C`c.j"; r:C.ktn[10i;y]; c.C.r:`c.C$(`c.unsafe_k$r)`G0; do[y;c.r[c.do1]:x c.do1]; r}; / char buff -> K
 .b2c.toKI:{"c)`K`c.I`c.j"; r:C.ktn[6i;y]; c.I.r:`c.I$(`c.unsafe_k$r)`G0; do[y;c.r[c.do1]:x c.do1]; r}; / I* -> K
@@ -168,7 +174,7 @@ if[.b2c.is32; {x set value ssr[string get x;"`j";"`i"]}each `.b2c.kvalue`.b2c.kw
   @[value;qfn;{'"defExtFn: failed to create Q fn with ",x}];
   : qn;
  };
-.b2c.typeAlias:`c.i_p`c.j_p`c.f_p`c.g_p`c.h_p`c.c_p!`c.I`c.J`c.F`c.G`c.H`c.C;
+.b2c.typeAlias:`c.i_p`c.j_p`c.f_p`c.g_p`c.h_p`c.c_p`c.e_p!`c.I`c.J`c.F`c.G`c.H`c.C`c.E;
 .b2c.mkCast:{$[y=`getptr;"(&)",x;y=`unptr;"(*)",x;y in .q2b.castMap`tt;"`",string[y],"$",x;y in .b2c.defF2T`n;string[y]," ",x;'"defExtFn: unknown cast ",string y]};
 .b2c.defFnPre:{[f;t] r:""; a1:first each t`a1; if[(`free in a1)&0=count t`n;r,:"\"attr)enlist[`",$[t`i;"c.c",string[t`i];"c.res"],"]!enlist `free\";"];
   if[(0<t`i)&any j:a1 in`chkLen`chkLenEq;r:"if[",string[last d],$[`chkLen=first d:t[`a1]where[j] 0;">";"<>"],"count ",t[`n],"; '\"",f,": length\"]; "]; r};

@@ -35,6 +35,7 @@
 * [.b2c.defCCast - C cast](#b2cdefccast---c-cast)
 * [.b2c.defPCast - pointer cast](#b2cdefpcast---pointer-cast)
 * [.b2c.defExtConstFn - get C consts into Q](#b2cdefextconstfn---get-c-consts-into-q)
+* [.b2c.enStruct](#b2cenStruct)
 
 # Intro
 
@@ -306,7 +307,7 @@ vector properties can't be accessed via `c.k`, use the vector casts instead (uns
 c.i - int, c.j - long, c.I - int vector, c.J - long vector (also will work on all types based on int and long)
 c.f - double, c.h - short, c.F - double vector, c.H - short vector
 c.S - string. the source should be either a) string const b) string ending with \000 c) symbol
-c.C - char buff (a string with no \000 at the end) or a byte list
+c.C - char buff (a string with no \000 at the end) or a byte list, c.c - char
 c.k - to access basic K obj fields
 
 `c.I$kval, `c.f$kval and etc
@@ -325,7 +326,7 @@ C.ki c.i.var
 ```
 C.toK can be applied to
 ```
-c.k, c.i, c.f, c.j, c.h, c.long (it is C long type not c.j which is long long), c.uint, c.bool
+c.k, c.i, c.f, c.j, c.h, c.long (it is C long type not c.j which is long long), c.uint, c.bool, c.c
 / all vector functions will create a copy of the argument
 c.I, c.J, c.F, c.H, c.S, c.C as C.toK[c.C.var;length]
 ```
@@ -591,4 +592,11 @@ Args:
 Example:
 ```
 .b2c.defExtConstFn[`fcntl;`C.F_GETFD`C.F_SETFD`C.F_GETFL]; / C. will be removed in the returned dict
+```
+
+### .b2c.enStruct
+
+Encodes a table, dict, list or atom into a byte vector using `0x0 vs x` function. You must ensure that the field order is correct.
+```
+.b2c.enStruct `a`b!(1;10f)
 ```

@@ -11,8 +11,8 @@
 .b2c.P:"JI".b2c.is32;
 .b2c.it:`c.j`c.i .b2c.is32;
 .b2c.c:({"j"$x};{"i"$x}).b2c.is32;
-.b2c.intfns:`.b2c.K2i_cast`.b2c.K2j_cast`.b2c.K2f_cast`.b2c.K2h_cast`.b2c.K2I_cast`.b2c.K2J_cast`.b2c.K2H_cast`.b2c.K2F_cast`.b2c.K2S_cast`.b2c.K2C_cast`.b2c.K2K_cast`.b2c.k2K_cast`.b2c.kvalue`.b2c.kcols`.b2c.kupsert`.b2c.kmeta`.b2c.kset`.b2c.kxasc,
-    `.b2c.kxdesc`.b2c.kxsc`.b2c.kapp3`.b2c.kapp4`.b2c.kwget`.b2c.kapp1`.b2c.kkey`.b2c.kkeys;
+.b2c.intfns:`.b2c.K2i_cast`.b2c.K2j_cast`.b2c.K2f_cast`.b2c.K2h_cast`.b2c.K2c_cast`.b2c.K2I_cast`.b2c.K2J_cast`.b2c.K2H_cast`.b2c.K2F_cast`.b2c.K2E_cast`.b2c.K2S_cast`.b2c.K2C_cast`.b2c.K2K_cast`.b2c.k2K_cast,
+  `.b2c.kvalue`.b2c.kcols`.b2c.kupsert`.b2c.kmeta`.b2c.kset`.b2c.kxasc`.b2c.kxdesc`.b2c.kxsc`.b2c.kapp3`.b2c.kapp4`.b2c.kwget`.b2c.kapp1`.b2c.kkey`.b2c.kkeys;
 .b2c.intused:`$();
 .b2c.intglobs:`.b2c.consts`.b2c.intmap`.b2c.libFuncs`.b2c.libGlobs`.b2c.wglobals`.b2c.Kerr;
 .b2c.q2bOpts:`simpleTypes`opts!(`c`l`p`z`gk`fk`lc`pc`gc;`applyOpt`idCallOpt`emptyBlockOpt`foldConsts`calcTypes`simplifyCExpr`substCGlob`singleConstOpt`substSel`emptyBlockOpt`calcOpStatus`remapIdxConsts`optConsts);
