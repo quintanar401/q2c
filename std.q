@@ -69,13 +69,13 @@ if[.b2c.is32; {x set value ssr[string get x;"`j";"`i"]}each `.b2c.kvalue`.b2c.kw
   / K/c.k
   (`K;`c.j;0b;::;`.b2c.K2j_cast);(`K;`c.i;0b;::;`.b2c.K2i_cast);(`K;`c.f;0b;::;`.b2c.K2f_cast);(`K;`c.K;0b;::;`.b2c.K2K_cast);(`K;`c.I;0b;::;`.b2c.K2I_cast);(`K;`c.J;0b;::;`.b2c.K2J_cast);(`K;`c.F;0b;::;`.b2c.K2F_cast);(`K;`c.E;0b;::;`.b2c.K2E_cast);
   (`K;`c.S;0b;::;`.b2c.K2S_cast);(`K;`c.C;0b;::;`.b2c.K2C_cast);(`K;`c.H;0b;::;`.b2c.K2H_cast);(`K;`c.string;0b;::;`.b2c.K2S_cast);(`K;`c.h;0b;::;`.b2c.K2h_cast);(`c.k;`c.K;0b;::;`.b2c.k2K_cast);(`K;`c.c;0b;::;`.b2c.K2c_cast);
-  (`K;`c.k;1b;::;::);(`K;`c.unsafe_k;1b;::;::);(`c.k;`c.unsafe_k;1b;::;{y});(`c.k;`c.void_p;1b;::;::);(`c.G;`c.K;1b;::;::));
+  (`K;`c.k;1b;::;::);(`K;`c.unsafe_k;1b;::;::);(`c.k;`c.unsafe_k;1b;::;{y});(`c.k;`c.void_p;1b;::;::);(`c.void_p;`c.k;1b;::;::);(`c.G;`c.K;1b;::;::));
 / ctype vs ctype
 .b2c.defExtType[;()]each `c.mode_t`c.size_t`c.pid_t`c.off_t`c.ssize_t`c.uid_t`c.gid_t;
 .b2c.defExtType[`c.string;`c.S];
 .b2c.defType[`c.ij;.b2c.it];
 .b2c.defCCast each (`c.schar`c.i;`c.G`c.F;`c.G`c.E;`c.G`c.J;`c.G`c.I;`c.G`c.H;`c.G`c.S;`c.G`c.C;`c.G`c.void_p;`c.H`c.ushort_p;`c.C`c.void_p;`c.void_p`c.C;`c.void_p`c.F;`c.F`c.void_p;`c.void_p`c.I;`c.I`c.void_p;
-  `c.void_p`c.J;`c.J`c.void_p;`c.cvoid_p`c.void_p;`c.void_p`c.E;`c.E`c.void_p;`c.c`c.uchar;`c.C`c.uchar_p;`c.cchar_p`c.S;`c.g`c.c);
+  `c.void_p`c.J;`c.J`c.void_p;`c.cvoid_p`c.void_p;`c.void_p`c.E;`c.E`c.void_p;`c.void_p`c.H;`c.H`c.void_p;`c.c`c.uchar;`c.C`c.uchar_p;`c.cchar_p`c.S;`c.g`c.c);
 .b2c.defPCast each`c.void`c.void_p`c.I`c.J`c.H`c.G`c.F`c.E`c.K`c.S`c.C`c.ushort`c.cchar; / casts long vs a pointer
 .b2c.defCCast each {(.b2c.it,/:x),x,\:.b2c.it}`c.I`c.J`c.H`c.G`c.F`c.E`c.K`c.S`c.C`c.off_t`c.size_t`c.ssize_t; / casts long vs type
 .b2c.defCCast each {(`c.j,/:x),x,\:`c.j}`c.char`c.bool`c.ij;
