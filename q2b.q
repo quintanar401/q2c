@@ -11,10 +11,10 @@
 .q2b.a:(';/;\;':;/:;\:);
 .q2b.vc:`l`g`p`lc`pc`gc`gk`fk; / variables
 .q2b.rmap:(`b`r;`b`e;`b`b;(`s;0;0;0;`;0;0);(`s;1;0;0;`;0;0)),({(`b;`j`if`d1`d2`bj x)}each til 5),enlist[(`a;3;0;0)],({(`c;`k;x)}each til 7),(8#`),({(`a;2;1;x)}each til 6),
-  ({(`a;"j"$i;i+1;x-0 32 i:x>31)}each til 64),({(`l;22-x)}each til 23),enlist[(),`z],({(`p;x)}each til 8),({(`g;x)}each til 32),({(`c;`c;x)}each til 96);
+  ({(`a;"j"$i;i+1;x-0 32 i:x>31)}each til 64),enlist[(),`z],({(`p;x)}each til 8),({(`l;x)}each til 23),({(`g;x)}each til 32),({(`c;`c;x)}each til 96);
 .q2b.c2t:{{$[(enlist)~x;`enlist;count n:(where x~/:.q)except`;first n;100=type x;1;0]}each x};
-.q2b.gn3:{[f;c] $[23<c;(0;i;f[1]i:c-24);(1;i;f[2]i:22-c)]}; / name in a simple assign
-.q2b.gn4:{[f;c] $[127<cc:c 1;(2;2;i;f[3] i:cc-128);$[119<cc;(1;0;i;f[1]i:cc-120);(1;1;i;f[2]i:118-cc)]],c 2}; / complex assign
+.q2b.gn3:{[f;c] $[9>c;(0;i;f[1]i:c-1);(1;i;f[2]i:c-9)]}; / name in a simple assign
+.q2b.gn4:{[f;c] $[9>cc:c 1;(1;0;i;f[1]i:cc-1);127<cc;(2;2;i;f[3] i:cc-128);(2;2;i;f[3] i:cc-9)],c 2}; / complex assign
 .q2b.defOpts:`simpleTypes`constTypes`opts!(`c`l`p`z;`c`z;`applyOpt`idCallOpt`foldConsts`singleConstOpt`optConsts`emptyBlockOpt);
 .q2b.subst1:{[t;k;cc] .q2b.substn[t;(),k;cc]}; / insert app code - no jmps!
 .q2b.substn:{[t;k;cc] r:(count cc)#enlist t k0:k 0; r[`c]:cc; : t:((1+k0-count k)#t),r,(k0+1)_t}; / insert app code - no jmps!
@@ -43,8 +43,8 @@
 .q2b.processFn2:{[o;f;ft] r:(f;v 1;v 2;.q2b.getg v 3;(.q2b.getc v:value f),(::);()); r[5]:ungroup flip{x[`b]:til count x`c;x}`c`j!.q2b.procFn2 .q2b.procFn1/[(c;());til count c:-1_"j"$first v]1; r,:enlist .q2b.c2t r 4;
   r,:enlist r[6]where -11=type each r 6; r,:(.q2b.getFnVTy[o;ft;4#r];ft); r[5]:.q2b.recode r; r:{.q2b.optMap[z][x;y]}[o]/[r;o`opts]; r};
 
-.q2b.procFn1:{[c;i] if[-1=b:c[0;i];:c]; j:i+til 1^(3 4 5 6 8 9 10!2 3 2 2 2 2 2)b; c[1],:enlist c[0]j; c[0;j]:-1; :c}; / group instr
-.q2b.procFn2:{[c] s:0^prev sums count each c; cc:c -1_(asc distinct 0,(i0:1+where d=0),(w:1+w),w2:s?1+s[w]+(1 -1 d[w]=9)*last each c w:where (d:c[;0]) in 5 6 8 9)cut til count c;
+.q2b.procFn1:{[c;i] if[-1=b:c[0;i];:c]; j:i+til 1^(3 4 5 6 8 9 10!2 3 3 3 3 3 2)b; c[1],:enlist c[0]j; c[0;j]:-1; :c}; / group instr
+.q2b.procFn2:{[c] s:0^prev sums count each c; cc:c -1_(asc distinct 0,(i0:1+where d=0),(w:1+w),w2:s?1+s[w]+(1 -1 d[w]=9)*{sum 1 256*-2#x} each c w:where (d:c[;0]) in 5 6 8 9)cut til count c;
   s:0^prev sums count each cc; (cc;@[@[next til count cc;-1+s?w;:;s?w2];-1+s?i0;:;-1])}; / split in blocks, add jumps
 .q2b.recode:{[f] cc:f[5]; c:cc`c; cc[`c]:.q2b.recodeP[f] .q2b.recodeS[f;c] .q2b.recodeA[c] .q2b.recodeC[f] .q2b.rmap c[;0]; cc};
 .q2b.recodeP:{[f;cc] {$[`p=n:y 0;y,x[1]y 1;`l=n;y,x[2]y 1;`g=n;y,x[3]y 1;y]}[f]each cc};
