@@ -3,7 +3,7 @@
 .q2b.getg:{{$[`=x;y;y like ".*";y;` sv `,x,y]}[first x]each x}; / add ns to globals
 .q2b.del:{[ii;t] delete from t where i in ii}; / delete a set of instrs
 .q2b.kc:(();0;1;,;`;::;::); / key consts
-.q2b.kc[6]:value[{}[;1]]1; / empty value
+.q2b.kc[6]:(value(1;))2; / empty value
 .q2b.U:`::`flip`neg`first`reciprocal`where`reverse`null`group`hopen`hclose`string`enlist`count`floor`not`key`distinct`type`value`read0`read1`2::`avg`last`sum`prd`min`max`exit`getenv`abs;
 .q2b.u:value each string .q2b.U;
 .q2b.B:(`$(),/:":+-*%&|^=<>$,#_~!?@."),`0:`1:`2:`in`within`like`bin`ss`insert`wsum`wavg`div;
